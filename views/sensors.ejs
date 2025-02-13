@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include partials/head %>
+</head>
+
+<body>
+  <% include partials/menu %>
+
+    <div class="container mt-4">
+      <div class="data-header">
+        <h1>
+          <%= page %>
+        </h1>
+        <button id="aggregateDataBtn" class="btn btn-success">Show Aggregate Data</button>
+        <form action="/sensors" method="GET" class="filter-form">
+          <input type="hidden" name="filterOption" value="all">
+          <input type="submit" class="filter-button" value="Show All">
+        </form>
+        <form action="/sensors" method="GET" class="filter-form">
+          <input type="hidden" name="filterOption" value="last20">
+          <input type="submit" class="filter-button" value="Show Last 20">
+        </form>
+      </div>
+
+      <p>Below is the latest sensor data from our monitoring system:</p>      
+
+      <div id="aggregateData" style="display: none; text-align: center;">
+        <p>Average: <span id="averageValue"></span></p>
+        <p>Minimum: <span id="minValue"></span></p>
+        <p>Maximum: <span id="maxValue"></span></p>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#Id</th>
+            <th>
+              Timestamp
+              <button class="sort-btn" data-column="timestamp">Sort</button>
+            </th>
+            <th>
+              Value
+              <button class="sort-btn" data-column="value">Sort</button>
+            </th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if(data && data.length){ for(var i=0; i < data.length; i++) { %>
+            <tr>
+              <th scope="row">
+                <%= data[i].id %>
+              </th>
+              <td>
+                <%= data[i].timestamp %>
+              </td>
+              <td>
+                <div class="value-edit-container">
+                  <span class="distance-value">
+                    <%= data[i].distance %>
+                  </span>
+                  <button class="edit-btn">Edit</button>
+                </div>
+                <form action="/edit-distance/<%= data[i].id %>" method="post" class="edit-form" style="display: none;">
+                  <input type="text" name="newDistance" value="<%= data[i].distance %>">
+                  <button type="submit">Save</button>
+                </form>
+              </td>
+              <td>
+                <form action="/delete-distance/<%= data[i].id %>" method="post">
+                  <button type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <% } } else { %>
+              <tr>
+                <td colspan="3">No data available.</td>
+              </tr>
+              <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <% include partials/script %>
+      <script src="./javascripts/editScript.js"></script>
+      <script src="./javascripts/aggregateDataScript.js"></script>
+      <script src="./javascripts/filter.js"></script>
+</body>
+
+</html>

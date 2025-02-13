@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include partials/head %>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+</head>
+
+<body>
+    <% include partials/menu %>
+
+        <div class="container mt-4">
+            <h1>
+                <%= page %>
+            </h1>
+            <p>Statistics based on the sensor data:</p>
+
+            <!-- Canvas element where Chart.js will render the chart -->
+            <canvas id="myChart"></canvas>
+
+            <!-- Chart.js Script -->
+            <script>
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: <%- JSON.stringify(labels) %>,
+                        datasets: [{
+                            label: 'Distance over Time',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
+                            data: <%- JSON.stringify(chartData) %>,
+                            fill: false,
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    display: true,
+                                    color: 'rgba(75, 192, 192, 0.1)',
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                            },
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        }
+                    }
+                });
+            </script>
+        </div>
+
+        <% include partials/script %>
+</body>
+
+</html>
