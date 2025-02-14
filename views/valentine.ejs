@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    
+    <% include partials/head %>
+
     <title><%= page %></title>
     <style>
         body {
@@ -17,6 +18,8 @@
     </style>
 </head>
 <body>
+    <% include partials/menu %>
+
     <h1>Happy Valentine's Day!</h1>
     <img src="/images/big-heart.png" alt="Big Heart" class="heart-image" />
     <button onclick="showSecondImage()">Show</button>
