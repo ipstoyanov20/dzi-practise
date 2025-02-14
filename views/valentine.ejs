@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <title><%= page %></title>
+    <style>
+        body {
+            background-color: pink; /* Set the background color to pink */
+            text-align: center;
+            padding-top: 50px;
+        }
+        .heart-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day!</h1>
+    <img src="/images/big-heart.png" alt="Big Heart" class="heart-image" />
+    <button onclick="showSecondImage()">Show</button>
+    
+    <!-- Second image initially hidden -->
+    <img id="secondImage" src="/images/download.png" alt="Another Image" class="heart-image" style="display:none;" />
+
+    <script>
+        // Function to show the second image
+        function showSecondImage() {
+            var img = document.getElementById('secondImage');
+            if (img.style.display === 'none') {
+                img.style.display = 'block'; // Show the image
+            } else {
+                img.style.display = 'none';  // Hide the image if it's already shown <button class="citation-flag" data-index="3">
+            }
+        }
+    </script>
+</body>
+</html>

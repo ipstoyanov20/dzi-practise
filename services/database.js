@@ -1,9 +1,9 @@
 var mysql = require('mysql')
 var connection = mysql.createConnection({
-  host: '192.168.0.1',
-  user: 'html',
+  host: '10.0.0.205',
+  user: '12a_11',
   password: 'password',
-  database: 'sensors',
+  database: 'DB12a_11',
 })
 connection.connect((err) => {
   if (err) {

@@ -24,7 +24,7 @@
                 const chart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: <%- JSON.stringify(labels) %>,
+                        labels:  JSON.stringify(labels),
                         datasets: [{
                             label: 'Distance over Time',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -34,7 +34,7 @@
                             pointBorderColor: '#fff',
                             pointHoverBackgroundColor: '#fff',
                             pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
-                            data: <%- JSON.stringify(chartData) %>,
+                            data:  JSON.stringify(chartData),
                             fill: false,
                             tension: 0.1
                         }]

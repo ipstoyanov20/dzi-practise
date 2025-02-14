@@ -10,6 +10,14 @@ router.get('/about', function(req, res, next) {
   res.render('about', { page: 'About Us', menuId: 'about' });
 });
 
+router.get('/valentine', function(req, res, next) {
+  res.render('valentine', { page: 'Valentine', menuId: 'about' });
+});
+
+router.get('/trifon', function(req, res, next) {
+  res.render('trifon', { page: 'Trifon', menuId: 'about' });
+});
+
 router.get('/contact', function(req, res, next) {
   res.render('contact', { page: 'Contact Us', menuId: 'contact' });
 });

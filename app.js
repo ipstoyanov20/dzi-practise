@@ -23,6 +23,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
+app.use(session({
+  secret: 'Leko_bate', // Change this to a strong random string in a real-world scenario <button class="citation-flag" data-index="5">
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
+
+
 // app.use('/', indexRouter);
 app.use('/', indexRouter);
 
